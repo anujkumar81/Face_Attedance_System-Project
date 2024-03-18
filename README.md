@@ -1,1 +1,3 @@
-# Face_Attedance_System-Project
+python Add_faces.py --> this will be used to add face to dataset and face will be recorded via webcaam 
+python test.py --> record attendance of added face , press 'o' to record attendance and it will create csv file corresponding to date present , name and timestamp will be recorded 
+streamlit run app.py --> attendance will be displayed here and can be downloaded in csv format 
