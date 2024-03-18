@@ -9,16 +9,15 @@ from datetime import datetime
 video = cv2.VideoCapture(0)
 
 # Load the Haar Cascade Classifier for face detection
-facedetect = cv2.CascadeClassifier(r'C:\Users\anujg\Downloads\9_Smart-Attendence-System_(Working)-20240116T100537Z-001\9_Smart-Attendence-System_(Working)\Data\haarcascade_frontalface_default.xml')
+facedetect = cv2.CascadeClassifier('Data/haarcascade_frontalface_default.xml')
 
 # Initialize an empty list to store face data
 faces_data = []
-
 # Counter to keep track of the number of frames processed
 i = 0
 
 # Get user input for their name
-name = input("Enter Studnet Name: ")
+name = input("Enter your name: ")
 
 # Loop to capture video frames and detect faces
 while True:
@@ -68,36 +67,33 @@ faces_data = np.asarray(faces_data)
 faces_data = faces_data.reshape(5, -1)
 
 # Check if 'names.pkl' is present in the 'Data/' directory
-if 'names.pkl' not in os.listdir(r'C:\Users\anujg\Downloads\9_Smart-Attendence-System_(Working)-20240116T100537Z-001\9_Smart-Attendence-System_(Working)\Data'):
+if 'names.pkl' not in os.listdir('Data/'):
     # If not present, create a list with the entered name repeated 5 times
     names = [name] * 5
     # Save the list to 'names.pkl'
     with open('Data/names.pkl', 'wb') as f:
         pickle.dump(names, f)
 else:
-    # If 'names
-    # .pkl' is present, load the existing list
-    with open(r'C:\Users\anujg\Downloads\9_Smart-Attendence-System_(Working)-20240116T100537Z-001\9_Smart-Attendence-System_(Working)\Data\names.pkl', 'rb') as f:
+    # If 'names.pkl' is present, load the existing list
+    with open('Data/names.pkl', 'rb') as f:
         names = pickle.load(f)
     # Append the entered name 5 times to the existing list
     names = names + [name] * 5
     # Save the updated list to 'names.pkl'
-    with open(r'C:\Users\anujg\Downloads\9_Smart-Attendence-System_(Working)-20240116T100537Z-001\9_Smart-Attendence-System_(Working)\Data\names.pkl', 'wb') as f:
+    with open('Data/names.pkl', 'wb') as f:
         pickle.dump(names, f)
 
 # Check if 'faces_data.pkl' is present in the 'Data/' directory
-if 'faces_data.pkl' not in os.listdir(r'C:\Users\anujg\Downloads\9_Smart-Attendence-System_(Working)-20240116T100537Z-001\9_Smart-Attendence-System_(Working)\Data'):
+if 'faces_data.pkl' not in os.listdir('Data/'):
     # If not present, save the NumPy array 'faces_data' to 'faces_data.pkl'
     with open('Data/faces_data.pkl', 'wb') as f:
         pickle.dump(faces_data, f)
 else:
     # If 'faces_data.pkl' is present, load the existing array
-    with open(r'C:\Users\anujg\Downloads\9_Smart-Attendence-System_(Working)-20240116T100537Z-001\9_Smart-Attendence-System_(Working)\Data\faces_data.pkl', 'rb') as f:
+    with open('Data/faces_data.pkl', 'rb') as f:
         faces = pickle.load(f)
     # Append the new array 'faces_data' to the existing array
     faces = np.append(faces, faces_data, axis=0)
     # Save the updated array to 'faces_data.pkl'
-    with open(r'C:\Users\anujg\Downloads\9_Smart-Attendence-System_(Working)-20240116T100537Z-001\9_Smart-Attendence-System_(Working)\Data\faces_data.pkl', 'wb') as f:
+    with open('Data/faces_data.pkl', 'wb') as f:
         pickle.dump(faces, f)
-
-        
